@@ -1,5 +1,23 @@
 extends layout
 
+append stylesheets
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css")
+
+
 block content
-  h1= title
-  p Welcome to #{title}
+  //append -> layouttaki verilerin üzerine yazar yani hem layouttakiler hem de bu sayfadakiler çalışır.
+  //block -> override eder. Yani eğer layoutta content içinde birşey varsa burda block ile onu ezeriz ve başka bir
+  //şey yazarız.
+  div(ng-controller="indexController")
+    .modal
+      .modal__inner
+        .modal__header
+          h2 Welcome, please login.
+        .modal__footer
+          a(href='#')
+            i.fa.fa-google-plus(aria-hidden='true')
+            | Login with Google+
+
+append javascripts
+    script(src="/javascripts/controller/indexController.js")

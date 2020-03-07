@@ -2,7 +2,8 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    block stylesheets
+      link(rel='stylesheet', href='/stylesheets/style.css')
   body
     //ng-cloak -> {{username}} örneğin $scope ile controller'dan böyle bir ifade çekmemiz gerekirse
     //sayfa ilk açıldığında html bunu direkt yazı olarak algılıyor fakat sonradan kod compile edildiğinde
