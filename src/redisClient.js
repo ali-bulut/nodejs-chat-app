@@ -1,11 +1,7 @@
 const redis=require('redis');
 
 const getClient=()=>{
-    return redis.createClient({
-        port:process.env.REDIS_PORT,
-        host:process.env.REDIS_URI,
-        password:process.env.REDIS_PASS
-    })
+    return redis.createClient(process.env.REDISCLOUD_URL)
 }
 
 module.exports.getClient=getClient;

@@ -7,16 +7,7 @@
 const redis=require('redis');
 const session=require('express-session');
 const redisStore=require('connect-redis')(session);
-const client=redis.createClient({
-    port:process.env.REDIS_PORT,
-    host:process.env.REDIS_URI,
-    password:process.env.REDIS_PASS
-});
+const client=redis.createClient(process.env.REDISCLOUD_URL);
 
 
-module.exports=new redisStore({
-    client,
-    port:process.env.REDIS_PORT,
-    host:process.env.REDIS_URI,
-    password:process.env.REDIS_PASS
-})
+module.exports=new redisStore({client});
