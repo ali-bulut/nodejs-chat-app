@@ -7,7 +7,6 @@ const session=require('express-session');
 const passport=require('passport');
 const redisStore=require('./helpers/redisStore');
 
-
 //for using .env file
 const dotenv=require('dotenv');
 dotenv.config();

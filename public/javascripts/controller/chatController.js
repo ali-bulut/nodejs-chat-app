@@ -20,7 +20,7 @@ app.controller('chatController',['$scope', 'chatFactory', 'userFactory', ($scope
     $scope.messages=[];
     $scope.user={};
 
-    const socket=io.connect("https://alibulut-chat.herokuapp.com/");
+    const socket=io.connect("http://localhost:3000");
 
     socket.on('onlineList',users=>{
         $scope.onlineList=users;
