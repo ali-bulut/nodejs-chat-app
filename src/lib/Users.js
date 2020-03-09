@@ -1,12 +1,10 @@
 const redis=require('redis');
+const redisClient=require('../redisClient');
 
 //ctor 
-//Users classı çalıştığında createClient methodu ile redisi ayağa kaldırıyoruz.
+//Users classı çalıştığında kendi oluşturduğumuz getClient methodu ile redisi ayağa kaldırıyoruz.
 function Users(){
-    this.client=redis.createClient({
-        host:process.env.REDIS_URI,
-        port:process.env.REDIS_PORT
-    })
+    this.client=redisClient.getClient();
 }
 
 module.exports=new Users();
