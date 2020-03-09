@@ -1,4 +1,5 @@
 const redis=require('redis');
+const shortId=require('shortid');
 const redisClient=require('../redisClient');
 
 //ctor 
@@ -11,8 +12,8 @@ module.exports=new Rooms();
 
 //redis'e data ekleme
 Rooms.prototype.upsert=function(roomName){
-    
-    this.client.hset('rooms',roomName,JSON.stringify({roomName:roomName,when:Date.now()}),(err)=>{
+    const newId=shortId.generate();
+    this.client.hset('rooms','@Room:'+newId,JSON.stringify({roomId:'@Room:'+newId,roomName:roomName,when:Date.now()}),(err)=>{
         if(err)
             console.error(err);
     })

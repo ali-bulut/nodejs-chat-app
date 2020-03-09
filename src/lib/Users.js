@@ -17,16 +17,16 @@ Users.prototype.upsert=function(connectionId,meta){
     //'online' -> key kısmı yani tablonun adı gibi düşünebilirsin
     //meta.googleId -> field kısmı yani tablonun içindeki column gibi düşünebilirsin
     //JSON.stringify -> bu method ile json datasını stringe çevirip value kısmına yani column'un içeriğine kaydediriz.
-    this.client.hset('online',meta.googleId,JSON.stringify({socketId:connectionId, data:meta, when:Date.now()}),(err)=>{
+    this.client.hset('online',meta._id,JSON.stringify({socketId:connectionId, data:meta, when:Date.now()}),(err)=>{
         if(err)
             console.error(err);
     })
 }
 
 //redis'ten data silme
-Users.prototype.remove=function(googleId){
+Users.prototype.remove=function(_id){
     //online table'ından parametre olarak gelen googleId'ye sahip olan field'ı sil.
-    this.client.hdel('online',googleId,(err)=>{
+    this.client.hdel('online',_id,(err)=>{
         if(err)
             console.error(err);
     });
