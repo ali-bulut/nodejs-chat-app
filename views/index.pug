@@ -8,6 +8,7 @@ block content
   //append -> layouttaki verilerin üzerine yazar yani hem layouttakiler hem de bu sayfadakiler çalışır.
   //block -> override eder. Yani eğer layoutta content içinde birşey varsa burda block ile onu ezeriz ve başka bir
   //şey yazarız.
+  meta(name="google-signin-client_id" content="971996073795-vhhp80oev6upjuskjuk2cejuueeke5mh.apps.googleusercontent.com")
   div(ng-controller="indexController")
     .modal
       .modal__inner
@@ -20,3 +21,4 @@ block content
 
 append javascripts
     script(src="/javascripts/controller/indexController.js")
+    script(src="https://apis.google.com/js/platform.js" async defer)
