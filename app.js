@@ -7,6 +7,8 @@ const session=require('express-session');
 const passport=require('passport');
 const redisStore=require('./helpers/redisStore');
 
+const cors=require('cors');
+
 //for using .env file
 const dotenv=require('dotenv');
 dotenv.config();
@@ -27,6 +29,16 @@ const isAuthenticated=require('./middleware/isAuthenticated');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
