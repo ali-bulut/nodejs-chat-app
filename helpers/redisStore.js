@@ -10,10 +10,13 @@ const redisStore=require('connect-redis')(session);
 const client=redis.createClient({
     port:process.env.REDIS_PORT,
     host:process.env.REDIS_URI,
-    auth_pass:process.env.REDIS_PASS
+    password:process.env.REDIS_PASS
 });
 
 
 module.exports=new redisStore({
-    client
+    client,
+    port:process.env.REDIS_PORT,
+    host:process.env.REDIS_URI,
+    password:process.env.REDIS_PASS
 })

@@ -1,5 +1,6 @@
 const app = angular.module('chatdad', []);
 
 app.value('env',{
-    'SERVICE_URL':'http://localhost:3000'
+    'SERVICE_URL':'https://alibulut-chat.herokuapp.com'
+    //'SERVICE_URL':'http://localhost:3000'
 })
