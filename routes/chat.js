@@ -1,14 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
 router.get('/', (req, res, next) => {
-  if(!req.user){
-    res.render('index', { title: 'ChatDad' }); 
-  }
-  else{
-    res.redirect('/chat')
-  }
+  //db'deki giriş yapan user datasını döner
+  res.render('chat', {user:req.user});
 });
 
 module.exports = router;
