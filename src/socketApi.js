@@ -6,6 +6,9 @@ const socketApi={
     io:io
 };
 
+//libs
+const Users=require('./lib/Users');
+
 const socketAuthorization=require('../middleware/socketAuthorization');
 
 //socket.io'da middleware kullanmak için use methodunu kullanırız.
@@ -35,6 +38,22 @@ io.use(socketAuthorization);
 
 io.on('connection', socket => {
     console.log('A user logged in with name is '+socket.request.user.name);
+
+    //request.user derken google.js'te done kısmına yazdığımız user'ı kastediyoruz. Yani
+    //user.name vs dediğimizde db'deki kayıtları getiriyoruz.
+    Users.upsert(socket.id,socket.request.user);
+
+    Users.list(users=>{
+        io.emit('onlineList',users);
+    })
+
+    socket.on('disconnect',()=>{
+        Users.remove(socket.request.user.googleId);
+
+        Users.list(users=>{
+            io.emit('onlineList',users);
+        })
+    })
 })
 
 module.exports=socketApi;
